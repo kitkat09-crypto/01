@@ -1,0 +1,371 @@
+PImage im[] = new PImage[8];
+String imFile[] = {"Start Screen.jpg", "Game Over.jpg", "Introduction.jpg", "Heart.jpg", "Fireball.png", "Fireball1.png", "Fireball2.png", "Win.jpg"};
+long t = 0;
+
+float timer = (millis() + t)/1000;
+  
+int rad = 60;
+float xpos, ypos;
+float xspeed = 2.8;
+float yspeed = 2.2;
+int xdirection = 1;
+int ydirection = 1;
+
+float aY = 0;
+int aX = 15;
+float aV = 0;
+float aA = 0.4;
+
+float bY = 0;
+int bX = 15;
+float bV = 0;
+float bA = 0.5;
+
+float cY = 0;
+int cX = 15;
+float cV = 0;
+float cA = 0.5;
+
+float dY = 0;
+int dX = 15;
+float dV = 0;
+float dA = 0.6;
+
+float eY = 0;
+int eX = 15;
+float eV = 0;
+float eA = 0.1;
+
+float fY = 0;
+int fX = 15;
+float fV = 0;
+float fA = 0.2;
+
+float gY = 0;
+int gX = 15;
+float gV = 0;
+float gA = 0.3;
+
+float hY = 0;
+int hX = 15;
+float hV = 0;
+float hA = 0.4;
+
+float iY = 0;
+int iX = 15;
+float iV = 0;
+float iA = 0.5;
+
+float jY = 0;
+int jX = 15;
+float jV = 0;
+float jA = 0.6;
+
+
+boolean isIntroScreen = true;
+
+void setup(){
+  size(1000,1000);
+  t = millis();
+  frameRate(1000);
+  ellipseMode(RADIUS);
+    xpos = width/2;
+    ypos = height/2;
+    
+     for (int i = 0; i < 4; i = i +1) {
+       im[0] = loadImage(imFile[0]);
+  mouseY = height - 135;
+  }
+}
+
+void draw(){
+  if (isIntroScreen)
+  {
+    background(0);
+    image(im[0],0,0,width,height);
+  }
+  else{
+    background(0);
+  rect(mouseX,mouseY,1,1);
+  im[3]=loadImage(imFile[3]);
+ {
+  image(im[3],mouseX,mouseY,25,25);
+ }
+ if(timer < 20){
+ xpos = xpos + (xspeed * xdirection);
+ ypos = ypos + (yspeed * ydirection);
+ if (ypos > height-rad || ypos < rad){
+   xdirection *= -1;
+ }
+ if (ypos > height-rad || xpos < rad){
+   ydirection *= -1;
+ }
+ }
+ ellipse(xpos,ypos,rad,rad);
+ 
+   float timer = (millis() + t)/1000;
+  fill(255);
+  textSize(20);
+  text("Time: " + (0 + timer), 10, 20);
+ if (isIntroScreen) {noLoop();}
+ 
+ if(timer < 50){
+  im[4]=loadImage(imFile[4]);
+  image(im[4],aX,aY,100,100);
+  aV = aV + aA;
+  aY = aY + aV;
+  if (aY > height) {
+    aY = 15;
+    aX = int(random(width - 0));
+    aV = 0;
+    }
+ }
+ if(timer < 50){
+im[5]=loadImage(imFile[5]);
+  image(im[5],bX,bY,50,50);
+  bV = bV + bA;
+  bY = bY + bV;
+  if (bY > height) {
+    bY = 15;
+    bX = int(random(width - 0));
+    bV = 0;
+  }
+ }
+ if(timer < 50){
+   fill(255);
+ ellipse(cX,cY,50,50);
+  cV = cV + cA;
+  cY = cY + cV;
+  if (cY > height) {
+    cY = 15;
+    cX = int(random(width - 0));
+    cV = 0;
+  }
+ }
+ if(timer < 50){
+   im[6]=loadImage(imFile[6]);
+  image(im[6],dX,dY,25,25);
+  dV = dV + dA;
+  dY = dY + dV;
+  if (dY > height) {
+    dY = 15;
+    dX = int(random(width - 0));
+    dV = 0;
+  }
+ }
+  if (timer > 50){
+  fill(255);
+  rect (eX,eY,10,10);
+  eV = eV + eA;
+  eY = eY + eV;
+  if (eY > height) {
+    eY = 15;
+    eX = int(random(width - 0));
+    eV = 0;
+  }
+  }
+   if (timer > 50){
+  fill(255);
+  rect (fX,fY,10,10);
+  fV = fV + fA;
+  fY = fY + fV;
+  if (fY > height) {
+    fY = 15;
+    fX = int(random(width - 0));
+    fV = 0;
+  }
+   }
+   if (timer > 50){
+  fill(255);
+  rect (gX,gY,10,10);
+  gV = gV + gA;
+  gY = gY + gV;
+  if (gY > height) {
+    gY = 15;
+    gX = int(random(width - 0));
+    gV = 0;
+  }
+   }
+    if (timer > 50){
+  fill(255);
+  rect (hX,hY,10,10);
+  hV = hV + hA;
+  hY = hY + hV;
+  if (hY > height) {
+    hY = 15;
+    hX = int(random(width - 0));
+    hV = 0;
+  }
+   }
+       if (timer > 50){
+  fill(255);
+  rect (iX,iY,10,10);
+  iV = iV + iA;
+  iY = iY + iV;
+  if (iY > height) {
+    iY = 15;
+    iX = int(random(width - 0));
+    iV = 0;
+  }
+   }
+       if (timer > 50){
+  fill(255);
+  rect (jX,jY,10,10);
+  jV = jV + jA;
+  jY = jY + jV;
+  if (jY > height) {
+    jY = 15;
+    jX = int(random(width - 0));
+    jV = 0;
+  }
+   }
+
+  fill(255);
+  if (aY + 50 > mouseY && aY < mouseY + 135) {
+    if (aX + 40 > mouseX && aX < mouseX + 128) {
+       im[1] = loadImage(imFile[1]);
+       {
+       image(im[1],0,0,width,height);
+       noLoop();
+       }
+      }
+    }
+      fill(255);
+  if (bY + 50 > mouseY && bY < mouseY + 135) {
+    if (bX + 40 > mouseX && bX < mouseX + 128) {
+       im[1] = loadImage(imFile[1]);
+       {
+       image(im[1],0,0,width,height);
+       noLoop();
+       }
+      }
+    }
+      fill(255);
+  if (cY + 50 > mouseY && cY < mouseY + 135) {
+    if (cX + 40 > mouseX && cX < mouseX + 128) {
+       im[1] = loadImage(imFile[1]);
+       {
+       image(im[1],0,0,width,height);
+       noLoop();
+       }
+      }
+    }
+      fill(255);
+  if (dY + 50 > mouseY && dY < mouseY + 135) {
+    if (dX + 40 > mouseX && dX < mouseX + 128) {
+       im[1] = loadImage(imFile[1]);
+       {
+       image(im[1],0,0,width,height);
+       noLoop();
+       }
+      }
+    }
+          fill(255);
+  if (eY + 50 > mouseY && eY < mouseY + 135) {
+    if (eX + 40 > mouseX && eX < mouseX + 128) {
+       im[1] = loadImage(imFile[1]);
+       {
+       image(im[1],0,0,width,height);
+       noLoop();
+       }
+      }
+    }
+          fill(255);
+  if (fY + 50 > mouseY && fY < mouseY + 135) {
+    if (fX + 40 > mouseX && fX < mouseX + 128) {
+       im[1] = loadImage(imFile[1]);
+       {
+       image(im[1],0,0,width,height);
+       noLoop();
+       }
+      }
+    }
+          fill(255);
+  if (gY + 50 > mouseY && gY < mouseY + 135) {
+    if (gX + 40 > mouseX && gX < mouseX + 128) {
+       im[1] = loadImage(imFile[1]);
+       {
+       image(im[1],0,0,width,height);
+       noLoop();
+       }
+      }
+    }
+          fill(255);
+  if (hY + 50 > mouseY && hY < mouseY + 135) {
+    if (hX + 40 > mouseX && hX < mouseX + 128) {
+       im[1] = loadImage(imFile[1]);
+       {
+       image(im[1],0,0,width,height);
+       noLoop();
+       }
+      }
+    }
+          fill(255);
+  if (iY + 50 > mouseY && iY < mouseY + 135) {
+    if (iX + 40 > mouseX && iX < mouseX + 128) {
+       im[1] = loadImage(imFile[1]);
+       {
+       image(im[1],0,0,width,height);
+       noLoop();
+       }
+      }
+    }
+          fill(255);
+  if (jY + 50 > mouseY && jY < mouseY + 135) {
+    if (jX + 40 > mouseX && jX < mouseX + 128) {
+       im[1] = loadImage(imFile[1]);
+       {
+       image(im[1],0,0,width,height);
+       noLoop();
+       }
+      }
+    }
+        fill(0,0,255);
+  if (ypos + 50 > mouseY && ypos < mouseY + 135) {
+    if (xpos + 40 > mouseX && xpos < mouseX + 128) {
+       im[1] = loadImage(imFile[1]);
+       {
+       image(im[1],0,0,width,height);
+       noLoop();
+       }
+      }
+    }
+    if (timer > 300){
+      im[7] = loadImage(imFile[7]);
+      image(im[7],0,0,width,height);
+    }
+  }
+}
+
+void keyPressed() {
+  if (keyCode == ENTER&& isIntroScreen){
+    for (int i = 0; i < 4; i = i +1) {
+    im[2] = loadImage(imFile[2]); 
+    image(im[2],0,0,width,height);
+    noLoop();
+    }
+  }
+ else if (keyCode == TAB && isIntroScreen){
+  background(0);
+  fill(255);
+  noStroke();
+  
+  isIntroScreen = false;
+ }
+  float timer = (millis() + t)/1000;
+  fill(255);
+  textSize(20);
+  text("Time: " + (0 + timer), 10, 20);
+ if (isIntroScreen) {noLoop();}
+ else {loop();}
+ 
+ if (key == 'q' || key == 'Q'){
+   setup();
+ }
+}
+
+
+
+
+
+
