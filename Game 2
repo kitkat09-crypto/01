@@ -1,0 +1,648 @@
+PImage im[] = new PImage[12];
+String imFile[] = {"Start Screen.jpg", "Game Over.jpg", "Introduction.jpg", "Heart.png", "Fireball.png", "Fireball1.png", "Fireball2.png", "Win.jpg", "Hell.jpg", "Ice.jpg", "Acid.jpg", "Mystic.jpg"};
+long t = 0;
+
+float timer = (millis() + t)/1000;
+
+int rad = 60;
+float xpos, ypos;
+float xspeed = 2.8;
+float yspeed = 2.2;
+int xdirection = 1;
+int ydirection = 1;
+//Scene 1
+float aY = 0;
+int aX = 15;
+float aV = 0;
+float aA = 0.02;
+ 
+float bY = 0;
+int bX = 15;
+float bV = 0;
+float bA = 0.05;
+ 
+float cY = 0;
+int cX = 15;
+float cV = 0;
+float cA = 0.06;
+ 
+float dY = 0;
+int dX = 15;
+float dV = 0;
+float dA = 0.1;
+//Scene 2
+float eY = 0;
+int eX = 15;
+float eV = 0;
+float eA = 0.1;
+ 
+float fY = 0;
+int fX = 15;
+float fV = 0;
+float fA = 0.2;
+ 
+float gY = 0;
+int gX = 15;
+float gV = 0;
+float gA = 0.15;
+ 
+float hY = 0;
+int hX = 15;
+float hV = 0;
+float hA = 0.11;
+ 
+float iY = 0;
+int iX = 15;
+float iV = 0;
+float iA = 0.25;
+ 
+float jY = 0;
+int jX = 15;
+float jV = 0;
+float jA = 0.3;
+//Scene 3
+float kY = 0;
+int kX = 15;
+float kV = 0;
+float kA = 0.3;
+ 
+float lY = 0;
+int lX = 15;
+float lV = 0;
+float lA = 0.25;
+ 
+float mY = 0;
+int mX = 15;
+float mV = 0;
+float mA = 0.25;
+ 
+float nY = 0;
+int nX = 15;
+float nV = 0;
+float nA = 0.05;
+ 
+float oY = 0;
+int oX = 15;
+float oV = 0;
+float oA = 0.07;
+
+float pY = 0;
+int pX = 15;
+float pV = 0;
+float pA = 0.067;
+ 
+boolean isIntroScreen = true;
+boolean isGameEnd = false;
+ 
+void setup(){
+ noCursor();
+ size(1000,1000);
+ // t = millis();
+ frameRate(1000);
+ ellipseMode(RADIUS);
+ xpos = width/2;
+ ypos = height/2;
+  
+ for (int i = 0; i < 4; i = i +1) {
+   im[0] = loadImage(imFile[0]);
+   mouseY = height - 135;
+ }
+ for (int i = 0; i < 12; i++)
+ {
+   im[i] = loadImage(imFile[i]);
+ }
+ /*
+   im[0]=loadImage(imFile[0]);   //Start Screen
+   im[1]=loadImage(imFile[1]);   //Game Over
+   im[2]=loadImage(imFile[2]);   //Introduction
+   im[3]=loadImage(imFile[3]);   //Heart
+   im[4]=loadImage(imFile[4]);   //Scene 2 Fireball
+   im[5]=loadImage(imFile[5]);   //Scene 1 Fireball
+   im[6]=loadImage(imFile[6]);   //Scene 3 Fireball
+   im[7]=loadImage(imFile[7]);   //Win Screen
+   im[8]=loadImage(imFile[8]);   //Scene 1 Background
+   im[9]=loadImage(imFile[9]);   //Scene 2 Background
+   im[10]=loadImage(imFile[10]); //Scene 3 Background
+ */
+}
+ 
+void draw(){
+ if (isIntroScreen)
+ {
+   background(0);
+   image(im[0],0,0,width,height);
+ }
+ else
+ {
+   background(0);
+   //if (timer < 10) {image(im[8],0,0,1000,1000); }
+
+   //else if(timer < 20 && timer > 10){image(im[9],0,0,1000,1000);}
+
+   //else if(timer < 30 && timer > 20){image(im[10],0,0,1000,1000);}
+
+   image(im[11],0,0,1000,1000);
+
+   // rect(mouseX,mouseY,1,1);
+   // im[3]=loadImage(imFile[3]);
+   image(im[3],mouseX,mouseY,10,10);
+  
+   // time
+   float timer = (millis() + t)/1000;
+   fill(255);
+   textSize(20);
+   text("Time: " + (0 + timer), 10, 20);
+  
+   // if (isIntroScreen) {noLoop();}
+  
+   if(timer < 10)
+   {
+     image(im[5],aX,aY,100,100);
+     //Scene 1
+     aV = aV + aA;
+     aY = aY + aV;
+     if (aY > height)
+     {
+       aY = 15;
+       aX = int(random(width - 0));
+       aV = 0;
+     }
+ 
+     image(im[5],bX,bY,100,100);
+     bV = bV + bA;
+     bY = bY + bV;
+     if (bY > height)
+     {
+       bY = 15;
+       bX = int(random(width - 0));
+       bV = 0;
+     }
+ 
+     image(im[5],cX,cY,100,100);
+     cV = cV + cA;
+     cY = cY + cV;
+     if (cY > height)
+     {
+       cY = 15;
+       cX = int(random(width - 0));
+       cV = 0;
+     }
+ 
+     image(im[5],dX,dY,100,100);
+     dV = dV + dA;
+     dY = dY + dV;
+     if (dY > height)
+     {
+       dY = 15;
+       dX = int(random(width - 0));
+       dV = 0;
+     }
+   }
+   //Scene 2
+   else if (timer > 10 && timer < 20)
+   {
+     fill(255);
+     image(im[4],eX,eY,50,50);
+     eV = eV + eA;
+     eY = eY + eV;
+     if (eY > height)
+     {
+       eY = 15;
+       eX = int(random(width - 0));
+       eV = 0;
+     }
+ 
+     fill(255);
+     image(im[4],fX,fY,50,50);
+     fV = fV + fA;
+     fY = fY + fV;
+     if (fY > height) {
+       fY = 15;
+       fX = int(random(width - 0));
+       fV = 0;
+     }
+ 
+     fill(255);
+     image(im[4],gX,gY,50,50);
+     gV = gV + gA;
+     gY = gY + gV;
+     if (gY > height)
+     {
+       gY = 15;
+       gX = int(random(width - 0));
+       gV = 0;
+     }
+ 
+     fill(255);
+     image(im[4],hX,hY,50,50);
+     hV = hV + hA;
+     hY = hY + hV;
+     if (hY > height)
+     {
+       hY = 15;
+       hX = int(random(width - 0));
+       hV = 0;
+     }
+ 
+     fill(255);
+     image(im[4],iX,iY,50,50);
+     iV = iV + iA;
+     iY = iY + iV;
+     if (iY > height)
+     {
+       iY = 15;
+       iX = int(random(width - 0));
+       iV = 0;
+     }
+ 
+     fill(255);
+     image(im[4],jX,jY,50,50);
+     jV = jV + jA;
+     jY = jY + jV;
+     if (jY > height)
+     {
+       jY = 15;
+       jX = int(random(width - 0));
+       jV = 0;
+     }
+   }
+   //Scene 3
+   else if (timer > 20 && timer < 30)
+   {
+     fill(255);
+     image(im[6],kX,kY,50,50);
+     kV = kV + kA;
+     kY = kY + kV;
+     if (kY > height)
+     {
+       kY = 15;
+       kX = int(random(width - 0));
+       kV = 0;
+     }
+ 
+     fill(255);
+     image(im[6],lX,lY,50,50);
+     lV = lV + lA;
+     lY = lY + lV;
+     if (lY > height)
+     {
+       lY = 15;
+       lX = int(random(width - 0));
+       lV = 0;
+     }
+ 
+     fill(255);
+     image(im[6],mX,mY,50,50);
+     mV = mV + mA;
+     mY = mY + mV;
+     if (mY > height)
+     {
+       mY = 15;
+       mX = int(random(width - 0));
+       mV = 0;
+     }
+ 
+     fill(255);
+     image(im[6],nX,nY,100,100);
+     nV = nV + nA;
+     nY = nY + nV;
+     if (nY > height)
+     {
+       nY = 15;
+       nX = int(random(width - 0));
+       nV = 0;
+     }
+ 
+     fill(255);
+     image(im[6],oX,oY,100,100);
+     oV = oV + oA;
+     oY = oY + oV;
+     if (oY > height)
+     {
+       oY = 15;
+       oX = int(random(width - 0));
+       oV = 0;
+     }
+
+     fill(255);
+     image(im[6],pX,pY,100,100);
+     pV = pV + pA;
+     pY = pY + pV;
+     if (pY > height)
+     {
+       pY = 15;
+       pX = int(random(width - 0));
+       pV = 0;
+     }
+   }
+   if(timer > 20 && timer < 30)
+   {
+     xpos = xpos + (xspeed * xdirection);
+     ypos = ypos + (yspeed * ydirection);
+     if (ypos > height-rad || ypos < rad) {xdirection *= -1;}  // X of ball
+     if (ypos > height-rad || xpos < rad) {ydirection *= -1;}  // Y of ball
+     fill(0,255,0);
+     ellipse(xpos,ypos,rad,rad); //Ball
+   }
+ }
+  fill(255);
+ if (!isGameEnd)
+ {
+   if (aY + 100 > mouseY && aY < mouseY + 100) // Delete the 135 part
+   {
+     if (aX + 100 > mouseX && aX < mouseX + 100)  // Delete the 128 part
+     {
+        image(im[1],0,0,width,height);
+        isGameEnd = true;
+        noLoop();
+     }
+   }
+   //Scene 1
+   else if (bY + 100 > mouseY && bY < mouseY + 100)
+   {
+     if (bX + 100 > mouseX && bX < mouseX + 100)
+     {
+       image(im[1],0,0,width,height);
+       isGameEnd = true;
+       noLoop();
+     }
+   }
+   else if (cY + 100 > mouseY && cY < mouseY + 100)
+   {
+     if (cX + 100 > mouseX && cX < mouseX + 100)
+     {
+       image(im[1],0,0,width,height);
+       isGameEnd = true;
+       noLoop();
+     }
+   }
+     else if (dY + 100 > mouseY && dY < mouseY + 100)
+   {
+       if (dX + 100 > mouseX && dX < mouseX + 100)
+     {
+       image(im[1],0,0,width,height);
+       isGameEnd = true;
+       noLoop();
+     }
+   }
+   //Scene 2
+   else if (eY + 50 > mouseY && eY < mouseY + 50)
+   {
+     if (eX + 50 > mouseX && eX < mouseX + 50)
+     {
+       image(im[1],0,0,width,height);
+       isGameEnd = true;
+       noLoop();
+     }
+   }
+   else if (fY + 50 > mouseY && fY < mouseY + 50)
+   {
+     if (fX + 50 > mouseX && fX < mouseX + 50)
+     {
+        image(im[1],0,0,width,height);
+        isGameEnd = true;
+        noLoop();
+     }
+   }
+    else if (gY + 50 > mouseY && gY < mouseY + 50)
+   {
+     if (gX + 50 > mouseX && gX < mouseX + 50)
+     {
+        image(im[1],0,0,width,height);
+        isGameEnd = true;
+        noLoop();
+     }
+   }
+    else if (hY + 50 > mouseY && hY < mouseY + 50)
+   {
+     if (hX + 50 > mouseX && hX < mouseX + 50)
+     {
+        image(im[1],0,0,width,height);
+        isGameEnd = true;
+        noLoop();
+     }
+   }
+    else if (iY + 50 > mouseY && iY < mouseY + 50)
+   {
+     if (iX + 50 > mouseX && iX < mouseX + 50)
+     {
+        image(im[1],0,0,width,height);
+        isGameEnd = true;
+        noLoop();
+     }
+   }
+    else if (jY + 50 > mouseY && jY < mouseY + 50)
+   {
+     if (jX + 50 > mouseX && jX < mouseX + 50)
+     {
+        image(im[1],0,0,width,height);
+        isGameEnd = true;
+        noLoop();
+     }
+   }
+   //Scene 3
+    else if (kY + 50 > mouseY && kY < mouseY + 50)
+   {
+     if (kX + 50 > mouseX && kX < mouseX + 50)
+     {
+        image(im[1],0,0,width,height);
+        isGameEnd = true;
+        noLoop();
+     }
+   }
+    else if (lY + 50 > mouseY && lY < mouseY + 50)
+   {
+     if (lX + 50 > mouseX && lX < mouseX + 50)
+     {
+        image(im[1],0,0,width,height);
+        isGameEnd = true;
+        noLoop();
+     }
+   }
+    else if (mY + 50 > mouseY && mY < mouseY + 50)
+   {
+     if (mX + 50 > mouseX && mX < mouseX + 50)
+     {
+        image(im[1],0,0,width,height);
+        isGameEnd = true;
+        noLoop();
+     }
+   }
+    else if (nY + 100 > mouseY && nY < mouseY + 100)
+   {
+     if (nX + 100 > mouseX && nX < mouseX + 100)
+     {
+        image(im[1],0,0,width,height);
+        isGameEnd = true;
+        noLoop();
+     }
+   }
+    else if (oY + 100 > mouseY && oY < mouseY + 100)
+   {
+     if (oX + 100 > mouseX && oX < mouseX + 100)
+     {
+        image(im[1],0,0,width,height);
+        isGameEnd = true;
+        noLoop();
+     }
+   }
+    else if (pY + 100 > mouseY && pY < mouseY + 100)
+   {
+     if (pX + 100 > mouseX && pX < mouseX + 100)
+     {
+        image(im[1],0,0,width,height);
+        isGameEnd = true;
+        noLoop();
+     }
+   }
+    else if (ypos + 60 > mouseY && ypos < mouseY + 60 && timer > 20)  //Ball
+   {
+     if (xpos + 60 > mouseX && xpos < mouseX + 60)
+     {
+       image(im[1],0,0,width,height);
+       isGameEnd = true;
+       noLoop();
+     }
+   }
+  
+   if (timer > 30)
+   {
+     image(im[7],0,0,width,height);
+     isGameEnd = true;
+   }
+ }
+}
+ 
+ 
+void keyPressed()
+{
+ if (keyCode == ENTER && isIntroScreen)
+ {
+   for (int i = 0; i < 4; i = i +1)
+   {
+     image(im[2],0,0,width,height);
+     noLoop();
+   }
+ }
+ if (keyCode == TAB && isIntroScreen)
+ {
+   background(0);
+   fill(255);
+   noStroke();
+ 
+   isIntroScreen = false;
+   float timer = (millis() + t)/1000;
+   fill(255);
+   textSize(20);
+   text("Time: " + (0 + timer), 10, 20);
+   loop();
+ }
+ if ((key == 'q' || key == 'Q'))
+ {
+   loop();
+   reset();
+ }
+}
+ 
+void reset()
+{
+ t = millis();
+ frameRate(1000);
+ ellipseMode(RADIUS);
+ xpos = width/2;
+ ypos = height/2;
+  
+ for (int i = 0; i < 4; i = i + 1) {im[i] = loadImage(imFile[i]);}
+ mouseY = height - 135;
+ t = 0;
+ timer = 0;
+ timer = (millis() + t)/1000;
+ int rad = 60;
+ float xpos, ypos;
+ float xspeed = 2.8;
+ float yspeed = 2.2;
+ int xdirection = 1;
+ int ydirection = 1;
+ //Scene 1
+ float aY = 0;
+ int aX = 15;
+ float aV = 0;
+ float aA = 0.02;
+  
+ float bY = 0;
+ int bX = 15;
+ float bV = 0;
+ float bA = 0.05;
+  
+ float cY = 0;
+ int cX = 15;
+ float cV = 0;
+ float cA = 0.06;
+  
+ float dY = 0;
+ int dX = 15;
+ float dV = 0;
+ float dA = 0.1;
+ //Scene 2
+ float eY = 0;
+ int eX = 15;
+ float eV = 0;
+ float eA = 0.1;
+  
+ float fY = 0;
+ int fX = 15;
+ float fV = 0;
+ float fA = 0.2;
+  
+ float gY = 0;
+ int gX = 15;
+ float gV = 0;
+ float gA = 0.15;
+  
+ float hY = 0;
+ int hX = 15;
+ float hV = 0;
+ float hA = 0.11;
+  
+ float iY = 0;
+ int iX = 15;
+ float iV = 0;
+ float iA = 0.25;
+  
+ float jY = 0;
+ int jX = 15;
+ float jV = 0;
+ float jA = 0.3;
+ //Scene 3
+ float kY = 0;
+ int kX = 15;
+ float kV = 0;
+ float kA = 0.3;
+ 
+ float lY = 0;
+ int lX = 15;
+ float lV = 0;
+ float lA = 0.25;
+ 
+ float mY = 0;
+ int mX = 15;
+ float mV = 0;
+ float mA = 0.25;
+  
+ float nY = 0;
+ int nX = 15;
+ float nV = 0;
+ float nA = 0.05;
+  
+ float oY = 0;
+ int oX = 15;
+ float oV = 0;
+ float oA = 0.07;
+ 
+ float pY = 0;
+ int pX = 15;
+ float pV = 0;
+ float pA = 0.067;
+
+  isGameEnd = false;
+}
